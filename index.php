@@ -12,47 +12,92 @@
 </head>
 
 <body>
-<div class="container mt-5">
+    <div class="container mt-5 mb-5 gap-5">
 
-    <h1>Trabajo final BD1 - (Título de su trabajo)</h1>
 
-    <div class="informacion">
-        <ul>
-            <li><b>Materia:</b> Bases de Datos I</li>
-            <li><b>Profesor:</b> Francisco Javier Moreno Arboleda</li>
-            <li><b>Institución:</b> Universidad Nacional de Colombia sede Medellín</li>
-            <li><b>Semestre:</b> 2022-1</li>
-        </ul>
+        <div class="card  mt-5 gap-3 p-4">
+            <h2 class="text-center">Trabajo final BD1 - Biblonet</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Información del Curso</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <span class="fw-bold">Materia: </span>Bases de Datos I
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="fw-bold">Profesor: </span>Francisco Javier Moreno Arboleda
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="fw-bold">Institución: </span>Universidad Nacional de Colombia sede
+                                    Medellín
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="fw-bold">Semestre: </span>2022-1
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Integrantes</h5>
+                            <ol class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-primary rounded-pill">1</span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Juan Camilo Misas Tabares</div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-primary rounded-pill">2</span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Yohan Camilo Sánchez Meza</div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-primary rounded-pill">3</span>
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Santiago Vanegas Bermúdez</div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card mt-5 gap-5 d-flex justify-content-center align-items-center">
+            <div class="w-100 card-header bg-primary text-light fs-2">
+                Modelo
+            </div>
+            <div class="w-50 d-flex justify-content-center">
+                <img src="./assets/Modelo_prueba.jpeg" alt="Modelo Entidad Relación">
+            </div>
+
+        </div>
+
+        <div class="card mt-5 d-flex justify-content-center align-items-center">
+            <div class="w-100 card-header bg-primary text-light fs-2">
+                Enlaces
+            </div>
+            <div class="list-group w-100">
+                <a href="campus/campus.php" class="list-group-item list-group-item-action">Campús</a>
+                <a href="empresa/empresa.php" class="list-group-item list-group-item-action">Biblioteca</a>
+                <a href="proyecto/proyecto.php" class="list-group-item list-group-item-action">Libro</a>
+                <a href="consultas/consulta1.php" class="list-group-item list-group-item-action">Consulta 1</a>
+                <a href="consultas/consulta2.php" class="list-group-item list-group-item-action">Consulta 2</a>
+                <a href="busqueda/busqueda1.php" class="list-group-item list-group-item-action">Búsqueda 1</a>
+                <a href="busqueda/busqueda2.php" class="list-group-item list-group-item-action">Búsqueda 2</a>
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="integrantes">
-        <h2>Integrantes</h2>
-        <ul>
-            <li>Integrante 1</li>
-            <li>Integrante 2</li>
-            <li>Integrante 3</li>
-        </ul>
-    </div>
-
-    <div class="modelo">
-        <h2>Modelo E-R (Lo pueden eliminar o poner su modelo análogo)</h2>
-        <p></p>
-        <img src="modelo.png">
-    </div>
-
-    <div class="enlaces">
-        <h2>Enlaces</h2>
-        <ul>
-            <li><a href="cliente/cliente.php">Entidad análoga a CLIENTE (NOMBRE)</a></li>
-            <li><a href="empresa/empresa.php">Entidad análoga a EMPRESA (NOMBRE)</a></li>
-            <li><a href="proyecto/proyecto.php">Entidad análoga a PROYECTO (NOMBRE)</a></li>
-            <li><a href="consultas/consulta1.php">Consulta 1</a></li>
-            <li><a href="consultas/consulta2.php">Consulta 2</a></li>
-            <li><a href="busqueda/busqueda1.php">Búsqueda 1</a></li>
-            <li><a href="busqueda/busqueda2.php">Búsqueda 2</a></li>
-        </ul>
-    </div>
-</div>
 </body>
 
 </html>
