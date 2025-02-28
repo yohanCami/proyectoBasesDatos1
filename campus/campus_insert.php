@@ -1,5 +1,4 @@
 <?php
-
 // Crear conexión con la BD
 require('../config/conexion.php');
 
@@ -22,3 +21,6 @@ else:
 endif;
 
 mysqli_close($conn);
+
+
+require("modal.id_use.php");

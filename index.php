@@ -34,7 +34,7 @@
                                     Medellín
                                 </li>
                                 <li class="list-group-item">
-                                    <span class="fw-bold">Semestre: </span>2022-1
+                                    <span class="fw-bold">Semestre: </span>2024-2
                                 </li>
                             </ul>
                         </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="list-group w-100">
                 <a href="campus/campus.php" class="list-group-item list-group-item-action">Campús</a>
-                <a href="empresa/empresa.php" class="list-group-item list-group-item-action">Biblioteca</a>
+                <a href="biblioteca/biblioteca.php" class="list-group-item list-group-item-action">Biblioteca</a>
                 <a href="proyecto/proyecto.php" class="list-group-item list-group-item-action">Libro</a>
                 <a href="consultas/consulta1.php" class="list-group-item list-group-item-action">Consulta 1</a>
                 <a href="consultas/consulta2.php" class="list-group-item list-group-item-action">Consulta 2</a>

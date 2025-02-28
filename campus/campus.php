@@ -6,17 +6,18 @@ include "../includes/header.php";
 <h1 class="mt-3">Campus</h1>
 
 <!-- FORMULARIO. Cambiar los campos de acuerdo a su trabajo -->
+
 <div class="formulario p-4 m-3 border rounded-3">
 
     <form action="campus_insert.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="cod_campus" class="form-label">Codigo Campus</label>
-            <input type="number" class="form-control" id="cod_campus" name="cod_campus" required>
+            <label for="cod_campus" class="form-label">Codigo Campus*</label>
+            <input type="number" class="form-control" id="cod_campus" name="cod_campus" required min="1">
         </div>
 
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
+            <label for="nombre" class="form-label">Nombre*</label>
             <input type="text" class="form-control" id="nombre" name="nombre" required>
         </div>
 
@@ -31,7 +32,7 @@ include "../includes/header.php";
 require("campus_select.php");
 
 // Verificar si llegan datos
-if ($resultadoCliente and $resultadoCliente->num_rows > 0):
+if ($resultadoCampus and $resultadoCampus->num_rows > 0):
     ?>
 
     <!-- MOSTRAR LA TABLA. Cambiar las cabeceras -->
@@ -52,7 +53,7 @@ if ($resultadoCliente and $resultadoCliente->num_rows > 0):
 
                 <?php
                 // Iterar sobre los registros que llegaron
-                foreach ($resultadoCliente as $fila):
+                foreach ($resultadoCampus as $fila):
                     ?>
 
                     <!-- Fila que se generará -->

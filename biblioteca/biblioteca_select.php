@@ -4,9 +4,9 @@
 require('../config/conexion.php');
 
 // Query SQL a la BD
-$query = "SELECT * FROM campus";
+$query = "SELECT * FROM biblioteca";
 
 // Ejecutar la consulta
-$resultadoCampus = mysqli_query($conn, $query) or die(mysqli_error($conn));
+$resultadoBiblioteca = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 mysqli_close($conn);
