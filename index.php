@@ -11,7 +11,7 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bg-light">
     <div class="container mt-5 mb-5 gap-5">
 
 
@@ -88,7 +88,7 @@
             <div class="list-group w-100">
                 <a href="campus/campus.php" class="list-group-item list-group-item-action">Campús</a>
                 <a href="biblioteca/biblioteca.php" class="list-group-item list-group-item-action">Biblioteca</a>
-                <a href="proyecto/proyecto.php" class="list-group-item list-group-item-action">Libro</a>
+                <a href="libro/libro.php" class="list-group-item list-group-item-action">Libro</a>
                 <a href="consultas/consulta1.php" class="list-group-item list-group-item-action">Consulta 1</a>
                 <a href="consultas/consulta2.php" class="list-group-item list-group-item-action">Consulta 2</a>
                 <a href="busqueda/busqueda1.php" class="list-group-item list-group-item-action">Búsqueda 1</a>

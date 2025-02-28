@@ -1,5 +1,5 @@
 <?php
- 
+
 // Crear conexión con la BD
 require('../config/conexion.php');
 
@@ -7,16 +7,16 @@ require('../config/conexion.php');
 $codigoEliminar = $_POST["codigoEliminar"];
 
 // Query SQL a la BD
-$query = "DELETE FROM proyecto WHERE codigo = '$codigoEliminar'";
+$query = "DELETE FROM libro WHERE isbn = '$codigoEliminar'";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-if($result): 
+if ($result):
     // Si fue exitosa, redirigirse de nuevo a la página de la entidad
-    header ("Location: proyecto.php");
+    header("Location: libro.php");
 else:
     echo "Ha ocurrido un error al eliminar este registro";
 endif;
- 
+
 mysqli_close($conn);
