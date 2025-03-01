@@ -6,11 +6,7 @@ include "../includes/header.php";
 <h1 class="mt-3">Consulta 2</h1>
 
 <p class="mt-3">
-    Sea sumavalor la suma de los valores de todos los proyectos asociados con un cliente.
-    El segundo botón debe mostrar el código y el valor de cada uno de los proyectos 
-    que cumple todas las siguientes condiciones: tiene un valor mayor que el 
-    presupuesto de la empresa que lo revisa y además el cliente que lo revisa es el 
-    gerente de la empresa que lo revisa.
+    El código y el nombre los dos campus que tienen la mayor cantidad de libros
 </p>
 
 <?php
@@ -18,7 +14,11 @@ include "../includes/header.php";
 require('../config/conexion.php');
 
 // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-$query = "SELECT codigo, valor FROM proyecto";
+$query = "SELECT codigo_campus, nombre, COUNT(isbn) as totalLibros 
+          FROM libro JOIN biblioteca on libro.codigo_biblioteca = biblioteca.codigo_biblio JOIN campus on biblioteca.CAMPUS = campus.codigo_campus 
+          GROUP BY campus.nombre 
+          ORDER BY totalLibros 
+          DESC LIMIT 2;";
 
 // Ejecutar la consulta
 $resultadoC2 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -28,56 +28,58 @@ mysqli_close($conn);
 
 <?php
 // Verificar si llegan datos
-if($resultadoC2 and $resultadoC2->num_rows > 0):
-?>
+if ($resultadoC2 and $resultadoC2->num_rows > 0):
+    ?>
 
-<!-- MOSTRAR LA TABLA. Cambiar las cabeceras -->
-<div class="tabla mt-5 mx-3 rounded-3 overflow-hidden">
+    <!-- MOSTRAR LA TABLA. Cambiar las cabeceras -->
+    <div class="tabla mt-5 mx-3 rounded-3 overflow-hidden">
 
-    <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered">
 
-        <!-- Títulos de la tabla, cambiarlos -->
-        <thead class="table-dark">
-            <tr>
-                <th scope="col" class="text-center">Cédula</th>
-                <th scope="col" class="text-center">Nombre</th>
-            </tr>
-        </thead>
+            <!-- Títulos de la tabla, cambiarlos -->
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="text-center">Codigo Campus</th>
+                    <th scope="col" class="text-center">Campus</th>
+                    <th scope="col" class="text-center">Total Libros</th>
+                </tr>
+            </thead>
 
-        <tbody>
+            <tbody>
 
-            <?php
-            // Iterar sobre los registros que llegaron
-            foreach ($resultadoC2 as $fila):
-            ?>
+                <?php
+                // Iterar sobre los registros que llegaron
+                foreach ($resultadoC2 as $fila):
+                    ?>
 
-            <!-- Fila que se generará -->
-            <tr>
-                <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
-                <td class="text-center"><?= $fila["nombre"]; ?></td>
-            </tr>
+                    <!-- Fila que se generará -->
+                    <tr>
+                        <!-- Cada una de las columnas, con su valor correspondiente -->
+                        <td class="text-center"><?= $fila["codigo_campus"]; ?></td>
+                        <td class="text-center"><?= $fila["nombre"]; ?></td>
+                        <td class="text-center"><?= $fila["totalLibros"]; ?></td>
+                    </tr>
 
-            <?php
-            // Cerrar los estructuras de control
-            endforeach;
-            ?>
+                    <?php
+                    // Cerrar los estructuras de control
+                endforeach;
+                ?>
 
-        </tbody>
+            </tbody>
 
-    </table>
-</div>
+        </table>
+    </div>
 
-<!-- Mensaje de error si no hay resultados -->
-<?php
+    <!-- Mensaje de error si no hay resultados -->
+    <?php
 else:
-?>
+    ?>
 
-<div class="alert alert-danger text-center mt-5">
-    No se encontraron resultados para esta consulta
-</div>
+    <div class="alert alert-danger text-center mt-5">
+        No se encontraron resultados para esta consulta
+    </div>
 
-<?php
+    <?php
 endif;
 
 include "../includes/footer.php";

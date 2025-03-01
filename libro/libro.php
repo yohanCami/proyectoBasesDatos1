@@ -11,49 +11,49 @@ include "../includes/header.php";
     <form action="libro_insert.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="codigo_isbn" class="form-label">Código ISBN</label>
-            <input type="number" class="form-control" id="codigo_isbn" name="codigo_isbn" required>
+            <label for="codigo_isbn" class="form-label">Código ISBN*</label>
+            <input type="number" class="form-control" id="codigo_isbn" name="codigo_isbn" required min="1">
         </div>
 
         <div class="mb-3">
-            <label for="titulo" class="form-label">Titulo</label>
+            <label for="titulo" class="form-label">Titulo*</label>
             <input type="text" class="form-control" id="titulo" name="titulo" required>
         </div>
 
 
         <div class="mb-3">
-            <label for="fechapublicacion" class="form-label">Fecha de publicacion</label>
+            <label for="fechapublicacion" class="form-label">Fecha de publicacion*</label>
             <input type="date" class="form-control" id="fechapublicacion" name="fechapublicacion" required>
         </div>
 
         <div class="mb-3">
-            <label for="paginas" class="form-label">Paginas</label>
-            <input type="number" class="form-control" id="paginas" name="paginas" required>
+            <label for="paginas" class="form-label">Paginas*</label>
+            <input type="number" class="form-control" id="paginas" name="paginas" required min="1">
         </div>
 
         <div class="mb-3">
-            <label for="idioma" class="form-label">Idioma</label>
+            <label for="idioma" class="form-label">Idioma*</label>
             <input type="text" class="form-control" id="idioma" name="idioma" required>
         </div>
 
         <div class="mb-3">
-            <label for="volumen" class="form-label">Volumen</label>
-            <input type="number" class="form-control" id="volumen" name="volumen" required>
+            <label for="volumen" class="form-label">Volumen*</label>
+            <input type="number" class="form-control" id="volumen" name="volumen" required min="1">
         </div>
 
         <div class="mb-3">
-            <label for="editorial" class="form-label">Editorial</label>
+            <label for="editorial" class="form-label">Editorial*</label>
             <input type="text" class="form-control" id="editorial" name="editorial" required>
         </div>
 
         <div class="mb-3">
-            <label for="valor" class="form-label">Valor</label>
-            <input type="number" class="form-control" id="valor" name="valor" required>
+            <label for="valor" class="form-label">Valor*</label>
+            <input type="number" class="form-control" id="valor" name="valor" required min="1">
         </div>
 
         <!-- Consultar la lista de clientes y desplegarlos -->
         <div class="mb-3">
-            <label for="biblioteca" class="form-label">Biblioteca</label>
+            <label for="biblioteca" class="form-label">Biblioteca*</label>
             <select name="biblioteca" id="biblioteca" class="form-select">
 
                 <!-- Option por defecto -->
