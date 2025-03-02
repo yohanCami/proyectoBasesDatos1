@@ -11,15 +11,14 @@ include "../includes/header.php";
     <form action="libro_insert.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="codigo_isbn" class="form-label">Código ISBN*</label>
-            <input type="number" class="form-control" id="codigo_isbn" name="codigo_isbn" required min="1">
+            <label for="id_libro" class="form-label">Código ID Libro</label>
+            <input type="text" class="form-control" id="id_libro" name="id_libro" required>
         </div>
 
         <div class="mb-3">
-            <label for="titulo" class="form-label">Titulo*</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" required>
+            <label for="codigo_isbn" class="form-label">Código ISBN*</label>
+            <input type="number" class="form-control" id="codigo_isbn" name="codigo_isbn" required min="1">
         </div>
-
 
         <div class="mb-3">
             <label for="fechapublicacion" class="form-label">Fecha de publicacion*</label>
@@ -27,13 +26,8 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="paginas" class="form-label">Paginas*</label>
-            <input type="number" class="form-control" id="paginas" name="paginas" required min="1">
-        </div>
-
-        <div class="mb-3">
-            <label for="idioma" class="form-label">Idioma*</label>
-            <input type="text" class="form-control" id="idioma" name="idioma" required>
+            <label for="edicion" class="form-label">Edición*</label>
+            <input type="number" class="form-control" id="edicion" name="edicion" required min="1">
         </div>
 
         <div class="mb-3">
@@ -54,7 +48,7 @@ include "../includes/header.php";
         <!-- Consultar la lista de clientes y desplegarlos -->
         <div class="mb-3">
             <label for="biblioteca" class="form-label">Biblioteca*</label>
-            <select name="biblioteca" id="biblioteca" class="form-select">
+            <select name="biblioteca" id="biblioteca" class="form-select" required>
 
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>
@@ -103,7 +97,8 @@ include "../includes/header.php";
                         ?>
 
                         <!-- Opción que se genera -->
-                        <option value="<?= $fila["isbn"]; ?>"><?= $fila["titulo"]; ?> - Código Libro: <?= $fila["isbn"]; ?>
+                        <option value="<?= $fila["codigo_id"]; ?>">ISBN: <?= $fila["isbn"]; ?> - Código Libro:
+                            <?= $fila["codigo_id"]; ?>
                         </option>
 
                         <?php
@@ -136,16 +131,15 @@ if ($resultadoLibro and $resultadoLibro->num_rows > 0):
             <!-- Títulos de la tabla, cambiarlos -->
             <thead class="table-dark">
                 <tr>
+                    <th scope="col" class="text-center">Codigo Libro</th>
                     <th scope="col" class="text-center">ISBN</th>
-                    <th scope="col" class="text-center">Titulo</th>
                     <th scope="col" class="text-center">Fecha Publicación</th>
-                    <th scope="col" class="text-center">Paginas</th>
-                    <th scope="col" class="text-center">Idioma</th>
                     <th scope="col" class="text-center">Volumen</th>
                     <th scope="col" class="text-center">Editorial</th>
+                    <th scope="col" class="text-center">Edición</th>
                     <th scope="col" class="text-center">Valor</th>
                     <th scope="col" class="text-center">Código Bibliteca</th>
-                    <th scope="col" class="text-center">ISBN Libro Volumen Anterior</th>
+                    <th scope="col" class="text-center">Id Volumen Libro Anterior</th>
                     <th scope="col" class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -160,24 +154,23 @@ if ($resultadoLibro and $resultadoLibro->num_rows > 0):
                     <!-- Fila que se generará -->
                     <tr>
                         <!-- Cada una de las columnas, con su valor correspondiente -->
+                        <td class="text-center"><?= $fila["codigo_id"]; ?></td>
                         <td class="text-center"><?= $fila["isbn"]; ?></td>
-                        <td class="text-center"><?= $fila["titulo"]; ?></td>
                         <td class="text-center"><?= $fila["fecha_publicacion"]; ?></td>
-                        <td class="text-center"><?= $fila["paginas"]; ?></td>
-                        <td class="text-center"><?= $fila["idioma"]; ?></td>
-                        <td class="text-center"><?= $fila["volumen"]; ?></td>
+                        <td class="text-center"><?= $fila["vol"]; ?></td>
                         <td class="text-center"><?= $fila["editorial"]; ?></td>
+                        <td class="text-center"><?= $fila["ed"]; ?></td>
                         <td class="text-center">$<?= $fila["valor"]; ?></td>
-                        <td class="text-center"><?= $fila["codigo_biblioteca"]; ?></td>
+                        <td class="text-center"><?= $fila["biblioteca"]; ?></td>
                         <?php
 
-                        if (empty($fila["libro_anterior"])) {
+                        if (empty($fila["volumen_anterior"])) {
                             ?>
                             <td class="text-center">N/A</td>
                             <?php
                         } else {
                             ?>
-                            <td class="text-center">NIT: <?= $fila["libro_anterior"]; ?></td>
+                            <td class="text-center">NIT: <?= $fila["volumen_anterior"]; ?></td>
                             <?php
                         }
 

@@ -4,10 +4,10 @@
 require('../config/conexion.php');
 
 // Sacar la CP de la entidad
-$codigoEliminar = $_POST["codigoEliminar"];
+$codigoEliminar = $_POST["codigo_id"];
 
 // Query SQL a la BD
-$query = "DELETE FROM libro WHERE isbn = '$codigoEliminar'";
+$query = "DELETE FROM libro WHERE codigo_id = '$codigoEliminar'";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));

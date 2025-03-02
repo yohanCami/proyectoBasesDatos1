@@ -76,7 +76,7 @@
                 Modelo
             </div>
             <div class="w-50 d-flex justify-content-center">
-                <img src="./assets/Modelo_prueba.jpeg" alt="Modelo Entidad Relación">
+                <img src="./assets/Modelos Taller-Análogo.png" alt="Modelo Entidad Relación">
             </div>
 
         </div>

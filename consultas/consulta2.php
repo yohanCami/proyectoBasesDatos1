@@ -15,7 +15,7 @@ require('../config/conexion.php');
 
 // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
 $query = "SELECT codigo_campus, nombre, COUNT(isbn) as totalLibros 
-          FROM libro JOIN biblioteca on libro.codigo_biblioteca = biblioteca.codigo_biblio JOIN campus on biblioteca.CAMPUS = campus.codigo_campus 
+          FROM libro JOIN biblioteca on libro.biblioteca = biblioteca.codigo_biblio JOIN campus on biblioteca.CAMPUS = campus.codigo_campus 
           GROUP BY campus.nombre 
           ORDER BY totalLibros 
           DESC LIMIT 2;";

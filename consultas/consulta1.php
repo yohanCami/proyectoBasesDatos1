@@ -15,7 +15,7 @@ include "../includes/header.php";
 require('../config/conexion.php');
 
 // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-$query = "SELECT isbn, codigo_biblioteca, titulo, fecha_publicacion, valor, codigo_biblio, nombre_biblio, capacidad_maxima, horarios_link_pdf FROM libro JOIN biblioteca ON libro.codigo_biblioteca = biblioteca.codigo_biblio ORDER BY valor DESC LIMIT 3";
+$query = "SELECT codigo_id, nombre_biblio, isbn, fecha_publicacion, valor, codigo_biblio, biblioteca, capacidad_maxima, horarios_link_pdf FROM libro JOIN biblioteca ON libro.biblioteca = biblioteca.codigo_biblio ORDER BY valor DESC LIMIT 3";
 
 // Ejecutar la consulta
 $resultadoC1 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -36,7 +36,7 @@ if ($resultadoC1 and $resultadoC1->num_rows > 0):
             <!-- Títulos de la tabla, cambiarlos -->
             <thead class="table-dark">
                 <tr>
-                    <th scope="col" class="text-center">ISBN - Titulo Libro</th>
+                    <th scope="col" class="text-center">Codigo del libro - ISBN</th>
                     <th scope="col" class="text-center">Fecha Publicación</th>
                     <th scope="col" class="text-center">CodBiblio - Nombre Biblio</th>
                     <th scope="col" class="text-center">Capacidad Máxima</th>
@@ -55,9 +55,9 @@ if ($resultadoC1 and $resultadoC1->num_rows > 0):
                     <!-- Fila que se generará -->
                     <tr>
                         <!-- Cada una de las columnas, con su valor correspondiente -->
-                        <td class="text-center"><?= $fila["isbn"]; ?> - <?= $fila["titulo"]; ?></td>
+                        <td class="text-center"><?= $fila["codigo_id"]; ?> - <?= $fila["isbn"]; ?></td>
                         <td class="text-center"><?= $fila["fecha_publicacion"]; ?></td>
-                        <td class="text-center"><?= $fila["codigo_biblioteca"]; ?> - <?= $fila["nombre_biblio"]; ?></td>
+                        <td class="text-center"><?= $fila["biblioteca"]; ?> - <?= $fila["nombre_biblio"]; ?></td>
                         <td class="text-center"><?= $fila["capacidad_maxima"]; ?></td>
                         <td class="text-center"><?= $fila["horarios_link_pdf"]; ?></td>
                         <td class="text-center">$<?= $fila["valor"]; ?></td>

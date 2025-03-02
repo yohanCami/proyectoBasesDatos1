@@ -4,11 +4,11 @@
 require('../config/conexion.php');
 
 // Sacar los datos del formulario. Cada input se identifica con su "name"
+
+$id_libro = $_POST["id_libro"];
 $codigo_isbn = $_POST["codigo_isbn"];
-$titulo = $_POST["titulo"];
 $fechapublicacion = $_POST["fechapublicacion"];
-$paginas = $_POST["paginas"];
-$idioma = $_POST["idioma"];
+$edicion = $_POST["edicion"];
 $volumen = $_POST["volumen"];
 $editorial = $_POST["editorial"];
 $valor = $_POST["valor"];
@@ -18,7 +18,7 @@ $libro = $_POST["libro"];
 if (empty($libro)):
 
 	// Query SQL a la BD. Si tienen que hacer comprobaciones, hacerlas acá (Generar una query diferente para casos especiales)
-	$query = "INSERT INTO `libro`(`isbn`,`titulo`, `fecha_publicacion`, `paginas`, `idioma`, `volumen`, `editorial`, `valor`, `codigo_biblioteca`) VALUES ('$codigo_isbn', '$titulo', '$fechapublicacion', '$paginas', '$idioma', '$volumen', '$editorial', '$valor', '$biblioteca')";
+	$query = "INSERT INTO `libro`(`codigo_id`, `isbn`, `ed`, `fecha_publicacion`, `vol`, `editorial`, `valor`, `biblioteca`) VALUES ('$id_libro', '$codigo_isbn', '$edicion', '$fechapublicacion', '$volumen', '$editorial', '$valor', '$biblioteca')";
 
 	// Ejecutar consulta
 	$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -36,7 +36,7 @@ if (empty($libro)):
 else:
 
 	// Query SQL a la BD. Si tienen que hacer comprobaciones, hacerlas acá (Generar una query diferente para casos especiales)
-	$query = "INSERT INTO `libro`(`isbn`,`titulo`, `fecha_publicacion`, `paginas`, `idioma`, `volumen`, `editorial`, `valor`, `codigo_biblioteca`, `libro_anterior`) VALUES ('$codigo_isbn', '$titulo', '$fechapublicacion', '$paginas', '$idioma', '$volumen', '$editorial', '$valor', '$biblioteca', '$libro')";
+	$query = "INSERT INTO `libro`(`codigo_id`, `isbn`, `ed`, `fecha_publicacion`, `vol`, `editorial`, `valor`, `biblioteca`, `volumen_anterior`) VALUES ('$id_libro', '$codigo_isbn', '$edicion', '$fechapublicacion', '$volumen', '$editorial', '$valor', '$biblioteca', '$libro')";
 
 	// Ejecutar consulta
 	$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
