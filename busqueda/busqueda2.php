@@ -6,9 +6,7 @@ include "../includes/header.php";
 <h1 class="mt-3">Búsqueda 2</h1>
 
 <p class="mt-3">
-    Dos números enteros n1 y n2, n1 ≥ 0, n2 > n1. Se debe mostrar el nit y el 
-    nombre de todas las empresas que han revisado entre n1 y n2 proyectos
-    (intervalo cerrado [n1, n2]).
+    Con el código de un campus. Se debe mostrar los datos de los libros que hay en las bibliotecas de ese campus.
 </p>
 
 <!-- FORMULARIO. Cambiar los campos de acuerdo a su trabajo -->
@@ -18,19 +16,14 @@ include "../includes/header.php";
     <form action="busqueda2.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="numero1" class="form-label">Numero 1</label>
-            <input type="number" class="form-control" id="numero1" name="numero1" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="numero2" class="form-label">Numero 2</label>
-            <input type="number" class="form-control" id="numero2" name="numero2" required>
+            <label for="codigo_campus" class="form-label">Numero 1</label>
+            <input type="number" class="form-control" id="codigo_campus" name="codigo_campus" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Buscar</button>
 
     </form>
-    
+
 </div>
 
 <?php
@@ -40,11 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     // Crear conexión con la BD
     require('../config/conexion.php');
 
-    $numero1 = $_POST["numero1"];
-    $numero2 = $_POST["numero2"];
+    $codigo_campus = $_POST["codigo_campus"];
 
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-    $query = "SELECT nit, nombre FROM empresa";
+    $query = "SELECT * 
+              FROM libro JOIN biblioteca ON libro.biblioteca = biblioteca.codigo_biblio JOIN campus ON biblioteca.CAMPUS = campus.codigo_campus
+              WHERE codigo_campus = $codigo_campus;";
 
     // Ejecutar la consulta
     $resultadoB2 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -52,56 +46,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     mysqli_close($conn);
 
     // Verificar si llegan datos
-    if($resultadoB2 and $resultadoB2->num_rows > 0):
-?>
+    if ($resultadoB2 and $resultadoB2->num_rows > 0):
+        ?>
 
-<!-- MOSTRAR LA TABLA. Cambiar las cabeceras -->
-<div class="tabla mt-5 mx-3 rounded-3 overflow-hidden">
+        <!-- MOSTRAR LA TABLA. Cambiar las cabeceras -->
+        <div class="tabla mt-5 mx-3 rounded-3 overflow-hidden">
 
-    <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered">
 
-        <!-- Títulos de la tabla, cambiarlos -->
-        <thead class="table-dark">
-            <tr>
-                <th scope="col" class="text-center">Cédula</th>
-                <th scope="col" class="text-center">Celular</th>
-            </tr>
-        </thead>
+                <!-- Títulos de la tabla, cambiarlos -->
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" class="text-center">Código Libro</th>
+                        <th scope="col" class="text-center">ISBN</th>
+                        <th scope="col" class="text-center">Editorial</th>
+                        <th scope="col" class="text-center">Valor</th>
+                        <th scope="col" class="text-center">Fecha de publicación</th>
+                        <th scope="col" class="text-center">Codigo Biblioteca</th>
+                    </tr>
+                </thead>
 
-        <tbody>
+                <tbody>
 
-            <?php
-            // Iterar sobre los registros que llegaron
-            foreach ($resultadoB2 as $fila):
-            ?>
+                    <?php
+                    // Iterar sobre los registros que llegaron
+                    foreach ($resultadoB2 as $fila):
+                        ?>
 
-            <!-- Fila que se generará -->
-            <tr>
-                <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
-                <td class="text-center"><?= $fila["celular"]; ?></td>
-            </tr>
+                        <!-- Fila que se generará -->
+                        <tr>
+                            <!-- Cada una de las columnas, con su valor correspondiente -->
+                            <td class="text-center"><?= $fila["codigo_id"]; ?></td>
+                            <td class="text-center"><?= $fila["isbn"]; ?></td>
+                            <td class="text-center"><?= $fila["editorial"]; ?></td>
+                            <td class="text-center"><?= $fila["valor"]; ?></td>
+                            <td class="text-center"><?= $fila["fecha_publicacion"]; ?></td>
+                            <td class="text-center"><?= $fila["biblioteca"]; ?></td>
+                        </tr>
 
-            <?php
-            // Cerrar los estructuras de control
-            endforeach;
-            ?>
+                        <?php
+                        // Cerrar los estructuras de control
+                    endforeach;
+                    ?>
 
-        </tbody>
+                </tbody>
 
-    </table>
-</div>
+            </table>
+        </div>
 
-<!-- Mensaje de error si no hay resultados -->
-<?php
-else:
-?>
+        <!-- Mensaje de error si no hay resultados -->
+        <?php
+    else:
+        ?>
 
-<div class="alert alert-danger text-center mt-5">
-    No se encontraron resultados para esta consulta
-</div>
+        <div class="alert alert-danger text-center mt-5">
+            No se encontraron resultados para esta consulta
+        </div>
 
-<?php
+        <?php
     endif;
 endif;
 
