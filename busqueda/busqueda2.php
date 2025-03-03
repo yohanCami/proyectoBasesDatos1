@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
     $query = "SELECT * 
               FROM libro JOIN biblioteca ON libro.biblioteca = biblioteca.codigo_biblio JOIN campus ON biblioteca.CAMPUS = campus.codigo_campus
-              WHERE codigo_campus = $codigo_campus;";
+              WHERE codigo_campus = $codigo_campus AND volumen_anterior IS NOT NULL;";
 
     // Ejecutar la consulta
     $resultadoB2 = mysqli_query($conn, $query) or die(mysqli_error($conn));

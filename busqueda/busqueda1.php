@@ -6,8 +6,8 @@ include "../includes/header.php";
 <h1 class="mt-3">Búsqueda 1</h1>
 
 <p class="mt-3">
-    Con el código de la biblioteca y un rango de fechas f1 y f2 se desea obtener todos lo libros que se encuentran en
-    esa biblioteca y que fueron publicados dentro de ese rango de fechas
+    Con el código de la biblioteca y un rango de fechas f1 y f2 se desea obtener el valor de todos los libros que estén
+    en la biblioteca y se hayan publicado dentro de ese rango de fechas
 </p>
 
 <!-- FORMULARIO. Cambiar los campos de acuerdo a su trabajo -->
@@ -49,10 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     $codigo_biblio = $_POST["codigo_biblio"];
 
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-    $query = "SELECT *
-              FROM libro
+    $query = "SELECT *, SUM(libro.valor) as precio_total
+              FROM libro JOIN biblioteca ON libro.biblioteca = biblioteca.codigo_biblio
               WHERE libro.biblioteca = $codigo_biblio
-                AND libro.fecha_publicacion BETWEEN '$fecha1' AND '$fecha2';";
+                AND libro.fecha_publicacion BETWEEN '$fecha1' AND '$fecha2'
+              GROUP BY libro.biblioteca;";
+
 
     // Ejecutar la consulta
     $resultadoB1 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -71,11 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
                 <!-- Títulos de la tabla, cambiarlos -->
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col" class="text-center">Código Libro</th>
-                        <th scope="col" class="text-center">ISBN</th>
-                        <th scope="col" class="text-center">Editorial</th>
-                        <th scope="col" class="text-center">Valor</th>
-                        <th scope="col" class="text-center">Fecha de publicación</th>
+
+                        <th scope="col" class="text-center">Códgio Biblioteca</th>
+                        <th scope="col" class="text-center">Nombre Biblioteca</th>
+                        <th scope="col" class="text-center">Valor total precio de libros</th>
                     </tr>
                 </thead>
 
@@ -89,11 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
                         <!-- Fila que se generará -->
                         <tr>
                             <!-- Cada una de las columnas, con su valor correspondiente -->
-                            <td class="text-center"><?= $fila["codigo_id"]; ?></td>
-                            <td class="text-center"><?= $fila["isbn"]; ?></td>
-                            <td class="text-center"><?= $fila["editorial"]; ?></td>
-                            <td class="text-center"><?= $fila["valor"]; ?></td>
-                            <td class="text-center"><?= $fila["fecha_publicacion"]; ?></td>
+                            <td class="text-center"><?= $fila["codigo_biblio"]; ?></td>
+                            <td class="text-center"><?= $fila["nombre_biblio"]; ?></td>
+                            <td class="text-center">$<?= $fila["precio_total"]; ?></td>
+
                         </tr>
 
                         <?php

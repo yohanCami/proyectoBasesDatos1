@@ -86,7 +86,7 @@
                 Enlaces
             </div>
             <div class="list-group w-100">
-                <a href="campus/campus.php" class="list-group-item list-group-item-action">Campús</a>
+                <a href="campus/campus.php" class="list-group-item list-group-item-action">Campus</a>
                 <a href="biblioteca/biblioteca.php" class="list-group-item list-group-item-action">Biblioteca</a>
                 <a href="libro/libro.php" class="list-group-item list-group-item-action">Libro</a>
                 <a href="consultas/consulta1.php" class="list-group-item list-group-item-action">Consulta 1</a>
